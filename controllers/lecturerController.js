@@ -28,5 +28,6 @@ module.exports.createAssignment = async (req, res) => {
     res.json({ error: err });
   }
 };
+module.exports.getAllAsignments = async (req, res) => {}
 module.exports.inspectGrading = async (req, res) => {};
 module.exports.updateGrade = async (req, res) => {};

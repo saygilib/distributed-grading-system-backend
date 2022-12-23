@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const profile = require("../controllers/profileController");
-
-router.get("/getCurrentProfile", profile.getCurrentProfile);
-router.post("/changeProfileInfo", profile.changeProfileInfo);
+const verifyJwt = require("../middleware/verifyJwt");
+router.get("/getCurrentProfile",verifyJwt.verifyToken, profile.getCurrentProfile);
+router.post("/changeProfileInfo",verifyJwt.verifyToken, profile.changeProfileInfo);
 
 module.exports = router;
