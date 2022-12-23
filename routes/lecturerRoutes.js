@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const lecturer = require("../controllers/lecturerController");
-
-router.post("/createAssignment", lecturer.createAssignment);
+const upload = require("../middleware/upload");
+router.post("/createAssignment", upload.single("file"),lecturer.createAssignment);
 router.post("/inspectGrading", lecturer.inspectGrading);
 router.post("/updateGrade", lecturer.updateGrade);
 

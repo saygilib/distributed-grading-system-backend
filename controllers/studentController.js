@@ -13,7 +13,11 @@ module.exports.getReviews = async (req, res) => {};
 //ona atanan ödevleri görüntüler
 module.exports.getMyAssignments = async (req, res) => {};
 
-module.exports.getAllUsers = async (req,res) =>{
+module.exports.getAllUsers = async (req, res) => {
+  try {
     const users = await User.find();
-    res.json(users);
-}
+    res.status(200).send(users);
+  } catch (e) {
+    res.send({ err: e });
+  }
+};
