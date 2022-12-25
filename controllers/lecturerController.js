@@ -24,7 +24,7 @@ module.exports.createAssignment = async (req, res) => {
           res.json({ error: err });
         });
     }
-  } catch (ere) {
+  } catch (err) {
     res.json({ error: err });
   }
 };

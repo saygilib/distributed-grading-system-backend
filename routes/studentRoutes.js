@@ -2,8 +2,10 @@ const { Router } = require("express");
 const router = Router();
 const student = require("../controllers/studentController");
 const verifyJwt = require("../middleware/verifyJwt");
-router.post("/uploadAnswerSheet", student.uploadAnswerSheet);
-router.post("/reviewAnswerSheet", student.reviewAnswerSheet);
+const upload = require("../middleware/upload");
+
+router.post("/uploadAnswerSheet", upload.single("file"), student.uploadAnswerSheet);
+router.post("/uploadReview", student.uploadReview);
 router.post("/getUploads", student.getUploads);
 router.post("/getAssignments", student.getAssignments);
 router.post("/getReviews", student.getReviews);

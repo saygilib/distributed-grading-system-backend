@@ -12,13 +12,36 @@ const assignmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  file:{
-    type:String,
+  file: {
+    type: String,
   },
-  lecture:{
+  lecture: {
     type: String,
     required: true,
-  }
+  },
+  uploads: [
+    {
+      studentId: {
+        type: String,
+      },
+      path: {
+        type: String,
+      },
+      reviews: [
+        {
+          reviewerId: {
+            type: String,
+          },
+          review: {
+            type: String,
+          },
+          score:{
+            type: Number,
+          }
+        },
+      ],
+    },
+  ],
 });
 
 module.exports = mongoose.model("Assignment", assignmentSchema);
