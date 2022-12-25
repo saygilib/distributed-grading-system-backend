@@ -11,5 +11,6 @@ router.post("/getUploadsToBeReviewed", student.getUploadsToBeReviewed);
 router.post("/getReviews", student.getReviews);
 router.post("/getStudentAssignments", student.getStudentAssignments);
 router.get("/getAllUsers", student.getAllUsers);
+router.post("/registerLecture", student.registerLecture);
 
 module.exports = router;

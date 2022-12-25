@@ -26,12 +26,14 @@ const lecturerRoutes = require("./routes/lecturerRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const signRoutes = require("./routes/signRoutes");
 const studentRoutes = require("./routes/studentRoutes");
+const lectureRoutes = require("./routes/lectureRoutes");
 
 app.use(adminRoutes);
 app.use(lecturerRoutes);
 app.use(profileRoutes);
 app.use(signRoutes);
 app.use(studentRoutes);
+app.use(lectureRoutes);
 app.listen(PORT, () => {
   console.log(`Server is up on port ${PORT}`);
 });

@@ -1,5 +1,36 @@
 const User = require("../models/users");
 const Assignment = require("../models/assignment");
+const Lectures = require("../models/lectures");
+
+module.exports.registerLecture = async (req, res) => {
+  try {
+    if (!req.body.lectureCode || !req.body.studentId) {
+      res.status(400).send({ message: "Lütfen boş alan bırakmayınız." });
+    } else {
+      const newLecture = await Lectures.findOne({
+        lectureCode: req.body.lectureCode,
+      });
+      console.log(newLecture);
+      if (!newLecture) res.status(400).send({ message: "Ders bulunamadı." });
+      else {
+        await User.findOne({
+          studentId: req.body.studentId,
+        })
+          .then(async (user) => {
+            user.lectures.push(newLecture.lectureName);
+            await user.save();
+            res.json({ message: "Ders kaydı başarılı." });
+          })
+          .catch((err) => {
+            res.json({ error: err });
+          });
+      }
+    }
+  } catch (err) {
+    res.json({ error: err });
+  }
+};
+
 //ödevinin çözümünü yükler
 module.exports.uploadAnswerSheet = async (req, res) => {
   try {
@@ -64,7 +95,20 @@ module.exports.uploadReview = async (req, res) => {
 module.exports.getUploads = async (req, res) => {};
 //değerlendirmesi için atanan ödevleri görüntüler
 module.exports.getUploadsToBeReviewed = async (req, res) => {
-  
+  //şu anlık tüm uploadları gösteriyor
+  try{
+    await Assignment.findOne({
+      _id: req.body.assignmentId,
+    }).then(response =>{
+      console.log(response);
+      res.status(200).send(response.uploads)
+    })
+
+  }
+  catch(e){
+    res.send({err:e})
+  }
+
 };
 //yaptığı değerlendirmeleri görüntüler
 module.exports.getReviews = async (req, res) => {};
