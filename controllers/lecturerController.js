@@ -28,6 +28,14 @@ module.exports.createAssignment = async (req, res) => {
     res.json({ error: err });
   }
 };
-module.exports.getAllAsignments = async (req, res) => {}
+module.exports.getAllAsignments = async (req, res) => {
+  try {
+    const assignments = await assignment.find();
+    if (!assignments) res.ststus(400).send({ error: "No assignments found" });
+    else res.ststus(200).send(assignments);
+  } catch (err) {
+    res.json({ error: err });
+  }
+};
 module.exports.inspectGrading = async (req, res) => {};
 module.exports.updateGrade = async (req, res) => {};

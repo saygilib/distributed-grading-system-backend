@@ -63,7 +63,9 @@ module.exports.uploadReview = async (req, res) => {
 //yüklediği ödevleri görüntüler
 module.exports.getUploads = async (req, res) => {};
 //değerlendirmesi için atanan ödevleri görüntüler
-module.exports.getAssignments = async (req, res) => {};
+module.exports.getUploadsToBeReviewed = async (req, res) => {
+  
+};
 //yaptığı değerlendirmeleri görüntüler
 module.exports.getReviews = async (req, res) => {};
 

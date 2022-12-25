@@ -7,7 +7,7 @@ const upload = require("../middleware/upload");
 router.post("/uploadAnswerSheet", upload.single("file"), student.uploadAnswerSheet);
 router.post("/uploadReview", student.uploadReview);
 router.post("/getUploads", student.getUploads);
-router.post("/getAssignments", student.getAssignments);
+router.post("/getUploadsToBeReviewed", student.getUploadsToBeReviewed);
 router.post("/getReviews", student.getReviews);
 router.post("/getStudentAssignments", student.getStudentAssignments);
 router.get("/getAllUsers", student.getAllUsers);
